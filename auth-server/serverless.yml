@@ -1,0 +1,23 @@
+service: auth-server
+app: meetup
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-1
+  timeout: 60
+
+functions:
+  getAccessToken:
+    handler: handler.getRefreshToken
+    events:
+      - http:
+          path: api/token/{code}
+          method: get
+  
+  getRefreshToken:
+    handler: handler.getRefreshToken
+    events:
+      - http:
+          path: api/refresh/{code}
+          method: get
