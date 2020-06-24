@@ -3,9 +3,12 @@ import { shallow } from 'enzyme';
 
 import Event from '../Event';
 
+
 describe('<Event /> component', () => {
   test('render event component', () => {
     const EventWrapper = shallow(<Event />);
-    expect(EventWrapper.find(Event)).toHaveLength(4);
+    expect(EventWrapper).toHaveLength(1);
   });
 });
+
+
