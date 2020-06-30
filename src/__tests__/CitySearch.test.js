@@ -19,7 +19,6 @@ describe('<CitySearch /> component', () => {
   });
 
   test('render text input correctly', () => {
-    //compare search query w/name of each city suggestion, passes if matches
     const query = CitySearchWrapper.state('query');
     expect(CitySearchWrapper.find('.city').prop('value')).toBe(query);
   });
@@ -42,28 +41,28 @@ describe('<CitySearch /> component', () => {
     CitySearchWrapper.setState({
       suggestions: [
         {
-          city: 'Munich',
-          country: 'de',
-          localized_country_name: 'Germany',
-          name_string: 'Munich, Germany',
-          zip: 'meetup3',
-          lat: 48.14,
-          lon: 11.58
-        },
-        {
-          city: 'Munich',
+          city: 'Boston',
           country: 'us',
           localized_country_name: 'USA',
-          state: 'ND',
-          name_string: 'Munich, North Dakota, USA',
-          zip: '58352',
-          lat: 48.66,
-          lon: -98.85
+          state: 'MA',
+          name_string: 'Boston, Massachusetts',
+          zip: '02108',
+          lat: 42.36,
+          lon: -71.07
+        },
+        {
+          city: 'Boston',
+          country: 'gb',
+          localized_country_name: 'United Kingdom',
+          name_string: 'Boston, Lincolnshire, United Kingdom',
+          zip: 'PE21 9DG',
+          lat: 52.99,
+          lon: -0.02
         }
       ]
     });
     CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
-    expect(CitySearchWrapper.state('query')).toBe('Munich, Germany');
+    expect(CitySearchWrapper.state('query')).toBe('Boston, Massachusetts');
   });
 
 });
