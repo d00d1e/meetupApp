@@ -44,6 +44,7 @@ async function getEvents(lat, lon) {
   if (window.location.href.startsWith('http://localhost')) {
     return mockEvents.events;
   }
+  const token = await getAccessToken();
   if (token) {
     let url = 'https://api.meetup.com/find/upcoming_events?&sign=true&photo-host=public'
       + '&access_token=' + token;
@@ -55,28 +56,28 @@ async function getEvents(lat, lon) {
     return result.data.events;
   }
 }
+function getAccessToken() {
+  //no access token found in local storage
+  const accessToken = localStorage.getItem('access_token');
+  if (!accessToken) {
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    if (!code) {
+      window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=2qcpv2mnc7iv1ndsj5smev2qhd&response_type=code&redirect_uri=https://d00d1e.github.io/meetupApp';
+        return null;
+      }
+      return getOrRenewAccessToken('get', code);
+  }
+  //access token found in local storage, check validity
+  const lastSavedTime = localStorage.getItem('last_saved_time');
+  if (accessToken && (Date.now() - lastSavedTime < 3600000)) {
+    return accessToken;
+  }
 
-//no access token found in local storage
-const accessToken = localStorage.getItem('access_token');
-if (!accessToken) {
-  const searchParams = new URLSearchParams(window.location.search);
-  const code = searchParams.get('code');
-  if (!code) {
-    window.location.href = 'https://secure.meetup.com/oauth2/authorize?client_id=2qcpv2mnc7iv1ndsj5smev2qhd&response_type=code&redirect_uri=https://d00d1e.github.io/meetupApp';
-      return null;
-    }
-    return getOrRenewAccessToken('get', code);
-}
-
-//access token found in local storage, check validity
-const lastSavedTime = localStorage.getItem('last_saved_time');
-if (accessToken && (Date.now() - lastSavedTime < 3600000)) {
-  return accessToken;
-}
-
-//renew access token
-const refreshToken = localStorage.getItem('refresh_token');
+  //renew access token
+  const refreshToken = localStorage.getItem('refresh_token');
   return getOrRenewAccessToken('renew', refreshToken);
+}
 
 async function getOrRenewAccessToken(type, key) {
   let url;
