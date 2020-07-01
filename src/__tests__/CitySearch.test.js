@@ -3,11 +3,12 @@ import { shallow } from 'enzyme';
 
 import CitySearch from '../CitySearch';
 
+
 describe('<CitySearch /> component', () => {
-  
   let CitySearchWrapper;
+
   beforeAll(() => {
-    CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper = shallow(<CitySearch updateEvents={() => {}}/>);
   });
   
   test('render text input', () => {
@@ -63,6 +64,37 @@ describe('<CitySearch /> component', () => {
     });
     CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
     expect(CitySearchWrapper.state('query')).toBe('Boston, Massachusetts');
+  });
+
+});
+
+
+describe('<CitySearch /> integration', () => {
+  test('get a list of cities when user types in a query', async() => {
+    const CitySearchWrapper = shallow(<CitySearch />);
+    CitySearchWrapper.find('.city').simulate('change', { target: { value: 'Boston' } });
+    await CitySearchWrapper.update();
+    expect(CitySearchWrapper.state('suggestions')).toEqual([
+      {
+        city: 'Boston',
+        country: 'us',
+        localized_country_name: 'USA',
+        state: 'MA',
+        name_string: 'Boston, Massachusetts',
+        zip: '02108',
+        lat: 42.36,
+        lon: -71.07
+      },
+      {
+        city: 'Boston',
+        country: 'gb',
+        localized_country_name: 'United Kingdom',
+        name_string: 'Boston, Lincolnshire, United Kingdom',
+        zip: 'PE21 9DG',
+        lat: 52.99,
+        lon: -0.02
+      }
+    ]);
   });
 
 });
