@@ -3,7 +3,6 @@ import { mockEvents } from "./mock-events";
 
 
 async function getSuggestions(query) {
-  //return mock data if app hosted on localhost
   if (window.location.href.startsWith('http://localhost')) {
     return [
       {
@@ -95,7 +94,6 @@ async function getOrRenewAccessToken(type, key) {
   //return the access_token
   return tokenInfo.data.access_token;
 };
-
 
 
 export { getSuggestions, getEvents, getAccessToken }; 
