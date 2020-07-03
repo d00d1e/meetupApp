@@ -1,9 +1,8 @@
-'use strict';
+// 'use strict';
 
 const axios = require('axios');
 
 module.exports.getAccessToken = async (event) => {
-
   const MEETUP_OAUTH_URL = 'https://secure.meetup.com/oauth2/access'
     + '?client_id=2qcpv2mnc7iv1ndsj5smev2qhd'
     + '&client_secret=lq1mh125711rojai0rtpl276oe'
@@ -12,7 +11,6 @@ module.exports.getAccessToken = async (event) => {
     + '&code=' + event.pathParameters.code;
 
   const info = await axios.post(MEETUP_OAUTH_URL);
-
   return {
     statusCode: 200,
     headers: {
@@ -33,7 +31,6 @@ module.exports.getRefreshToken = async (event) => {
     + '&refresh_token=' + event.pathParameters.code;
   
   const info = await axios.post(MEETUP_OAUTH_URL);
-
   return {
     statusCode: 200,
     headers: {
