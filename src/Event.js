@@ -15,23 +15,25 @@ class Event extends Component {
   }
   
   render() {
-
+    const showDetails = this.state.showDetails;
     const { event } = this.props;
+
 
     return (
       <div className='event'>
         <div className='eventOverview'>
-          <p>{event.name}</p>
-          <p>{event.local_date} @{event.local_time}</p>  
-          <p>{event.local_time}</p> 
-          <button className='showDetailsButton' onClick={this.handleShowDetails}>Details</button>
+          <p className='eventDateTime'>{event.local_date} @{event.local_time}</p>
+          <p className='eventName'>{event.name}</p>   
+          {showDetails && <button className='detailsButton' onClick={this.handleShowDetails}>Hide Details</button>}
+          {!showDetails && <button className='detailsButton' onClick={this.handleShowDetails}>Show Details</button>}
         </div>
 
-        <div className='eventDetails'>
-          <p>{event.description}</p>
-          <button className='hideDetailsButton' onClick={this.handleShowDetails}>Details</button>
-        </div>
-        
+        {showDetails && 
+          <div className='eventDetails'>
+            <p className='eventVenue'>{event.venue.name}</p>
+            <p className='eventAddress'>{event.venue.address_1}&nbsp;{event.venue.city},{event.venue.state}&nbsp;{event.venue.zip}</p>
+          </div>
+        }
       </div>
     );
   }

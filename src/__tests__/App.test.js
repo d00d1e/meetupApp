@@ -53,5 +53,5 @@ describe('<App /> integration', () => {
     AppWrapper.setState({ events: [{ id: 1 }, { id: 2 }, { id: 3 }, {id: 4} ]});
     expect(AppWrapper.find('.event')).toHaveLength(4);
     AppWrapper.unmount();
-  })
+  });
 });
