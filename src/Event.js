@@ -18,7 +18,6 @@ class Event extends Component {
     const showDetails = this.state.showDetails;
     const { event } = this.props;
 
-
     return (
       <div className='event'>
         <div className='eventOverview'>
@@ -30,8 +29,9 @@ class Event extends Component {
 
         {showDetails && 
           <div className='eventDetails'>
-            <p className='eventVenue'>{event.venue.name}</p>
-            <p className='eventAddress'>{event.venue.address_1}&nbsp;{event.venue.city},{event.venue.state}&nbsp;{event.venue.zip}</p>
+            <p className='eventGroup'>{event.group.name}</p>
+            <p className='eventLink'>{event.link}</p>
+            <p className='eventRsvp'>{event.yes_rsvp_count}&nbsp;attending</p>
           </div>
         }
       </div>

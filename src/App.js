@@ -8,23 +8,45 @@ import { getEvents } from './api';
 
 
 class App extends Component {
-  state = {
-    events: [],
+  //load a list of events by default
+  componentDidMount() {
+    // this.setState({ isMounted: true });
+    // this.updateEvents();
+    getEvents().then(response => this.setState({ events: response }));
   }
 
-  updateEvents = (lat, lon) => {
-    getEvents(lat, lon).then(events => this.setState({ events }));
+  state = {
+    // isMounted: false,
+    events: [],
+    lat: null,
+    lon: null,
+    page: null
   }
+
+  updateEvents = (lat, lon, page) => {
+    if (lat && lon) {
+      getEvents(lat, lon, this.state.page).then(response => this.setState({ events: response, lat, lon }));
+    } else if (page) {
+      getEvents(this.state.lat, this.state.lon, page).then(response => this.setState({ events: response, page }));
+    } else {
+      getEvents(this.state.lat, this.state.lon, this.state.page).then(response => this.setState({ events: response }));
+    }
+  };
+
+
+  // componentWillUnmount() {
+  //   this.state.isMounted = false;
+  // }
 
   render() {
     return (
       <div className="App">
-        <EventList events={this.state.events} />
         <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents />
+        <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.events.length} lat={this.state.lat} lon={this.state.lon} />
+        <EventList events={this.state.events} />
       </div>
     );
   }
 }
-
+         
 export default App;

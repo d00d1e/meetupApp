@@ -34,9 +34,20 @@ describe('<App /> integration', () => {
     AppWrapper.instance().updateEvents = jest.fn();
     AppWrapper.instance().forceUpdate();
     const CitySearchWrapper = AppWrapper.find(CitySearch);
-    CitySearchWrapper.instance().handleItemClicked('value', 1.1, 1.2);
+    CitySearchWrapper.instance().handleItemClicked('value', 42.36, -71.07);
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
-    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(1.1, 1.2);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(42.36, -71.07);
+    AppWrapper.unmount();
+  });
+
+  test('update list of events after user changes target number of events to view', () => {
+    const AppWrapper = mount(<App />);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    NumberOfEventsWrapper.instance().handleNumberChanged({ target: { value: 1 } });
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, null, 1);
     AppWrapper.unmount();
   });
 
@@ -54,4 +65,5 @@ describe('<App /> integration', () => {
     expect(AppWrapper.find('.event')).toHaveLength(4);
     AppWrapper.unmount();
   });
+
 });
