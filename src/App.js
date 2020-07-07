@@ -10,13 +10,10 @@ import { getEvents } from './api';
 class App extends Component {
   //load a list of events by default
   componentDidMount() {
-    // this.setState({ isMounted: true });
-    // this.updateEvents();
     getEvents().then(response => this.setState({ events: response }));
   }
-
-  state = {
-    // isMounted: false,
+  
+state = {
     events: [],
     lat: null,
     lon: null,
@@ -32,11 +29,6 @@ class App extends Component {
       getEvents(this.state.lat, this.state.lon, this.state.page).then(response => this.setState({ events: response }));
     }
   };
-
-
-  // componentWillUnmount() {
-  //   this.state.isMounted = false;
-  // }
 
   render() {
     return (

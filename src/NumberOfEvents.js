@@ -15,7 +15,7 @@ class NumberOfEvents extends Component {
     return (
       <div className="numberOfEvents">
         <label className='numberOfEventsInputLabel'>Number of events: </label>
-        <input type="text" className="numberOfEventsInput" onChange={this.handleNumberChanged} value={this.state.numberOfEvents}  />
+        <input type="number" className="numberOfEventsInput" onChange={this.handleNumberChanged} value={this.state.numberOfEvents}  min="1" max="32" />
       </div>
     );
   }
