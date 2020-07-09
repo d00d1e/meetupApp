@@ -10,7 +10,7 @@ const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
 defineFeature(feature, test => {
   test('When user hasnt searched for a city, show upcoming events based on the users location by default.', ({ given, when, then }) => {
-    given('user had not searched for a city', () => { });
+    given('user had not searched for a city', () => {});
 
     let AppWrapper;
     when('user opens the app', () => {
