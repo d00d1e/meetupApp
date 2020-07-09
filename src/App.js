@@ -14,11 +14,11 @@ class App extends Component {
   }
   
 state = {
-    events: [],
-    lat: null,
-    lon: null,
-    page: null
-  }
+  events: [],
+  lat: null,
+  lon: null,
+  page: null
+}
 
   updateEvents = (lat, lon, page) => {
     if (lat && lon) {

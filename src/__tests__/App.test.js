@@ -37,7 +37,7 @@ describe('<App /> integration', () => {
     CitySearchWrapper.instance().handleItemClicked('value', 42.36, -71.07);
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(42.36, -71.07);
-    // AppWrapper.unmount();
+    AppWrapper.unmount();
   });
 
   test('update list of events after user changes target number of events to view', () => {
@@ -48,7 +48,7 @@ describe('<App /> integration', () => {
     NumberOfEventsWrapper.instance().handleNumberChanged({ target: { value: 1 } });
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledTimes(1);
     expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith(null, null, 1);
-    // AppWrapper.unmount();
+    AppWrapper.unmount();
   });
 
   test('change state with the updated list of events', async () => {
@@ -56,14 +56,14 @@ describe('<App /> integration', () => {
     AppWrapper.instance().updateEvents(1.1, 1.2);
     await AppWrapper.update();
     expect(AppWrapper.state('events')).toEqual(mockEvents.events);
-    // AppWrapper.unmount();
+    AppWrapper.unmount();
   });
 
   test('render correct list of events', () => {
     const AppWrapper = mount(<App />);
     AppWrapper.setState({ events: [{ id: 1 }, { id: 2 }, { id: 3 }, {id: 4} ]});
     expect(AppWrapper.find('.event')).toHaveLength(4);
-    // AppWrapper.unmount();
+    AppWrapper.unmount();
   });
 
 });
