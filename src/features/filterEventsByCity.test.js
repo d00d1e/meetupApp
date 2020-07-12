@@ -1,10 +1,10 @@
 import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { shallow, mount } from 'enzyme';
-
 import App from '../App';
 import CitySearch from '../CitySearch';
 import { mockEvents } from '../mock-events';
+
 
 const feature = loadFeature('./src/features/filterEventsByCity.feature');
 
@@ -63,5 +63,4 @@ defineFeature(feature, test => {
       expect(AppWrapper.find('.event')).toHaveLength(mockEvents.events.length);
     });
   });
-
 });

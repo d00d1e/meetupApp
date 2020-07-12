@@ -101,5 +101,4 @@ async function getOrRenewAccessToken(type, key) {
   return tokenInfo.data.access_token;
 };
 
-
 export { getSuggestions, getEvents, getAccessToken }; 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { mount } from 'enzyme';
-
 import App from '../App';
 import { mockEvents } from '../mock-events';
 
@@ -26,7 +25,6 @@ defineFeature(feature, test => {
       expect(AppWrapper.find('showDetails')).toHaveLength(0);
     });
   });
-
 
   test('User can expand an event to see its details', ({ given, and, when, then }) => {
     let AppWrapper;
@@ -68,5 +66,4 @@ defineFeature(feature, test => {
       expect(AppWrapper.find('.event .eventDetails')).toHaveLength(0);
     });
   });  
-
 });

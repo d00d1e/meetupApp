@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
 import CitySearch from '../CitySearch';
 
 
@@ -66,8 +65,7 @@ describe('<CitySearch /> component', () => {
     CitySearchWrapper.find('.suggestions li').at(0).simulate('click');
     expect(CitySearchWrapper.state('query')).toBe('Boston, Massachusetts');
     expect(CitySearchWrapper.find('.suggestions li')).toHaveLength(0);
-    });
-
+  });
 });
 
 
@@ -98,5 +96,4 @@ describe('<CitySearch /> integration', () => {
       }
     ]);
   });
-
 });

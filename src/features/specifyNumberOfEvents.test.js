@@ -1,13 +1,12 @@
 import React from 'react';
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import { mount } from 'enzyme';
-
 import App from '../App';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockEvents } from '../mock-events';
 
-const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
+const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
   test('When user hasnt specified a number, 32 is the default number', ({ given, and, when, then }) => {
@@ -27,7 +26,6 @@ defineFeature(feature, test => {
       AppWrapper.update();
       expect((AppWrapper.find('.event')).length).toBeLessThanOrEqual(32);
     });
-
   }); 
 
   test('User can change the number of events they want to see', ({ given, and, when, then }) => {

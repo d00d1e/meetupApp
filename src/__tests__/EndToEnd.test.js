@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 
+
 describe('Filter events by city', () => {
   let browser;
   let page;

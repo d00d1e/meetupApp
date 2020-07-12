@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
 import Event from '../Event';
 
 
@@ -98,5 +97,4 @@ describe('<Event /> component', () => {
     EventWrapper.find('.detailsButton').simulate('click');
     expect(EventWrapper.state('showDetails')).toBe(true)
   });
-
 });

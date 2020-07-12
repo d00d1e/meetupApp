@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
@@ -13,12 +12,12 @@ class App extends Component {
     getEvents().then(response => this.setState({ events: response }));
   }
   
-state = {
-  events: [],
-  lat: null,
-  lon: null,
-  page: null
-}
+  state = {
+    events: [],
+    lat: null,
+    lon: null,
+    page: null
+  }
 
   updateEvents = (lat, lon, page) => {
     if (lat && lon) {
