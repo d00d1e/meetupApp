@@ -21,11 +21,11 @@ class App extends Component {
 
   updateEvents = (lat, lon, page) => {
     if (lat && lon) {
-      getEvents(lat, lon, this.state.page).then(response => this.setState({ events: response, lat, lon }));
+      getEvents(lat, lon, this.state.page).then(events => this.setState({ events, lat, lon }));
     } else if (page) {
-      getEvents(this.state.lat, this.state.lon, page).then(response => this.setState({ events: response, page }));
+      getEvents(this.state.lat, this.state.lon, page).then(events => this.setState({ events, page }));
     } else {
-      getEvents(this.state.lat, this.state.lon, this.state.page).then(response => this.setState({ events: response }));
+      getEvents(this.state.lat, this.state.lon, this.state.page).then(events => this.setState({ events }));
     }
   };
 
@@ -33,7 +33,7 @@ class App extends Component {
     return (
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents updateEvents={this.updateEvents} numberOfEvents={this.state.events.length} lat={this.state.lat} lon={this.state.lon} />
+        <NumberOfEvents updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
       </div>
     );
