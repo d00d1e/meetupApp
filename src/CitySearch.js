@@ -7,7 +7,7 @@ class CitySearch extends Component {
   state = {
     query: '',
     suggestions: [],
-    infoText: ''
+    alertText: ''
   }
 
   handleInputChanged = (event) => {
@@ -18,9 +18,9 @@ class CitySearch extends Component {
       this.setState({ suggestions });
 
       if (value && suggestions.length === 0) {
-        this.setState({ infoText: 'We can not find the city you are looking for. Please try another city'});
+        this.setState({ alertText: 'We can not find the city you are looking for. Please try another city'});
       } else {
-        this.setState({ infoText: '' });
+        this.setState({ alertText: '' });
       }
     });
   };
@@ -33,8 +33,8 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
-        <InfoAlert text={this.state.infoText} />
-        <input type="text" className="city" value={this.state.query} onChange={this.handleInputChanged} placeholder="Search City"/>
+        <InfoAlert text={this.state.alertText} />
+        <input type="text" className="city" value={this.state.query} onChange={this.handleInputChanged} placeholder="Search City" aria-label='CitySearch' />
         <ul className="suggestions">
           {this.state.suggestions.map(item => 
             <li key={item.name_string} onClick={() => {this.handleItemClicked(item.name_string, item.lat, item.lon)}}>{item.name_string}</li>  

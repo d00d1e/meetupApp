@@ -4,19 +4,30 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents } from './api';
+import { OfflineAlert } from './Alert';
 
 
 class App extends Component {
   //load a list of events by default
   componentDidMount() {
     getEvents().then(response => this.setState({ events: response }));
+    window.addEventListenter('online', this.offLineAlert())
   }
   
   state = {
     events: [],
     lat: null,
     lon: null,
-    page: null
+    page: null,
+    alertText: ''
+  }
+
+  offlineAlert = () => {
+    if(navigator.onLine === false) {
+      this.setState({ alertText: 'You are offline, please connect to internet for an updated list' });
+    } else {
+      this.setState({ alertText: '' });
+    }
   }
 
   updateEvents = (lat, lon, page) => {
@@ -34,6 +45,7 @@ class App extends Component {
       <div className="App">
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
+        <OfflineAlert text={this.state.alertText} />
         <EventList events={this.state.events} />
       </div>
     );
