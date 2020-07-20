@@ -80,7 +80,7 @@ class App extends Component {
             <XAxis type="category" dataKey="date" name="date" />
             <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#8884d8" />
+            <Scatter data={this.getData()} fill="#F64060" />
           </ScatterChart>
         </ResponsiveContainer>
         

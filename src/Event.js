@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PieChart, Pie, Legend, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 
 class Event extends Component {
@@ -15,6 +16,14 @@ class Event extends Component {
     }
   }
   
+  //pie chart data for rsvp
+  getData = () => {
+    const rsvp = this.props.event.yes_rsvp_count;
+    const limit = this.props.event.rsvp_limit;
+    const open = limit - rsvp;
+    return [{ name: 'Spots Taken', value: rsvp, fill: '#F64060' }, { name: 'Spots Remaining', value: open, fill: '#1F24CC' }]
+  }
+
   render() {
     const showDetails = this.state.showDetails;
     const { event } = this.props;
@@ -33,6 +42,21 @@ class Event extends Component {
             <p className='eventGroup'>{event.group.name}</p>
             <p className='eventLink'>{event.link}</p>
             <p className='eventRsvp'>{event.yes_rsvp_count}&nbsp;attending</p>
+            
+            {event.yes_rsvp_count && event.rsvp_limit ? 
+              <ResponsiveContainer height={250}>
+                <PieChart>
+                  <Pie data={this.getData()} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} paddingAngle={3} label />
+                    { this.getData().map((entry, index) => (
+                        <Cell key={`cell-${index}`} />
+                      ))
+                    }
+                  <Legend iconType="star" verticalAlign="top" />
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+              : null}
+            
           </div>
         }
       </div>
