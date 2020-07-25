@@ -66,7 +66,6 @@ class App extends Component {
     return next7Days;
   }
 
-
   render() {
     return (
       <div className="App">
@@ -76,7 +75,7 @@ class App extends Component {
 
         <ResponsiveContainer height={240} >
           <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
-            <CartesianGrid />
+            <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="category" dataKey="date" name="date" />
             <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
@@ -84,11 +83,10 @@ class App extends Component {
           </ScatterChart>
         </ResponsiveContainer>
         
-
         <EventList events={this.state.events} />
       </div>
     );
   }
 }
-         
+
 export default App;

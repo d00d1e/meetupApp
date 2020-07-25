@@ -24,15 +24,17 @@ class Event extends Component {
     return [{ name: 'Spots Taken', value: rsvp, fill: '#F64060' }, { name: 'Spots Remaining', value: open, fill: '#1F24CC' }]
   }
 
+ 
   render() {
     const showDetails = this.state.showDetails;
     const { event } = this.props;
+    const colors = ['#F64060', '#1F24CC'];
 
     return (
       <div className='event'>
         <div className='eventOverview'>
           <p className='eventDateTime'>{event.local_date} @{event.local_time}</p>
-          <p className='eventName'>{event.name}</p>   
+          <h3 className='eventName'>{event.name}</h3>
           {showDetails && <button className='detailsButton' onClick={this.handleShowDetails}>Hide Details</button>}
           {!showDetails && <button className='detailsButton' onClick={this.handleShowDetails}>Show Details</button>}
         </div>
@@ -40,15 +42,17 @@ class Event extends Component {
         {showDetails && 
           <div className='eventDetails'>
             <p className='eventGroup'>{event.group.name}</p>
-            <p className='eventLink'>{event.link}</p>
-            <p className='eventRsvp'>{event.yes_rsvp_count}&nbsp;attending</p>
+            <p className='eventLocation'>{event.group.localized_location}</p>
+            <p className='eventDescription' dangerouslySetInnerHTML={{ __html: event.description }}></p>
+            <p className='eventLink'><a href={event.link}>Event Link</a></p>
+            <p className='eventRsvp'>RSVP: {event.yes_rsvp_count}&nbsp;attending</p>
             
             {event.yes_rsvp_count && event.rsvp_limit ? 
-              <ResponsiveContainer height={250}>
+              <ResponsiveContainer height={240}>
                 <PieChart>
-                  <Pie data={this.getData()} dataKey="value" nameKey="name" cx="50%" cy="50%" innerRadius={60} paddingAngle={3} label />
+                  <Pie data={this.getData()} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={70} paddingAngle={3} label />
                     { this.getData().map((entry, index) => (
-                        <Cell key={`cell-${index}`} />
+                        <Cell key={`cell-${index}`} fill={colors[index]}/>
                       ))
                     }
                   <Legend iconType="star" verticalAlign="top" />
