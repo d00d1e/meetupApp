@@ -1,3 +1,7 @@
+# Meetup App
+
+<img src="src/img/screenshot.png" width="500">
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
