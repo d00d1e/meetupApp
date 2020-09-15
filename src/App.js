@@ -69,6 +69,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="app__header">
+          <img 
+            className="app__headerImage"
+            src="https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg" 
+            alt=""
+          /> 
+        </div>
         <CitySearch updateEvents={this.updateEvents} />
         <NumberOfEvents updateEvents={this.updateEvents} />
         <OfflineAlert text={this.state.alertText} />
