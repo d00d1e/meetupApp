@@ -2,7 +2,6 @@
 
 <img src="src/img/screenshot.png" width="500">
 
-
 ## Available Scripts
 
 In the project directory, you can run:
