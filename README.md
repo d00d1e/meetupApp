@@ -1,6 +1,6 @@
 # Meetup App
 
-<img src="src/img/screenshot.png" width="500">
+<img src="src/img/screenshot.png">
 
 
 ## Available Scripts
