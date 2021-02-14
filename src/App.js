@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import './App.css'; 
+import './App.css';
 
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -16,7 +16,7 @@ class App extends Component {
     getEvents().then(response => this.setState({ events: response }));
     window.addEventListener('online', this.offlineAlert());
   }
-  
+
   state = {
     events: [],
     lat: null,
@@ -30,7 +30,7 @@ class App extends Component {
       this.setState({ alertText: 'You are currently offline, please connect to internet for an updated list' });
     } else {
       this.setState({ alertText: '' });
-    } 
+    }
   }
 
   updateEvents = (lat, lon, page) => {
@@ -59,7 +59,7 @@ class App extends Component {
     const currentDate = moment();
     for (let i = 0; i < 7; i += 1) {
       currentDate.add(1, 'days');
-      const dateString = currentDate.format('YYYY-MM-DD');
+      const dateString = currentDate.format('MM-DD-YYYY');
       const count = this.countEventsOnADate(dateString);
       next7Days.push({ date: dateString, number: count });
     }
@@ -70,26 +70,34 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app__header">
-          <img 
-            className="app__headerImage"
-            src="https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg" 
-            alt=""
-          /> 
+          <img
+            src="https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg"
+            alt="logo"
+          />
+          <sup>too!</sup>
         </div>
-        <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents updateEvents={this.updateEvents} />
-        <OfflineAlert text={this.state.alertText} />
-
-        <ResponsiveContainer height={240} >
-          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
+        <div className="divider-container">
+          <div className="divider-header">
+            <h1>Find your next event</h1>
+          </div>
+          <div className="divider-content">
+            <CitySearch updateEvents={this.updateEvents} />
+            <NumberOfEvents updateEvents={this.updateEvents} />
+          </div>
+        </div>
+        <div className="offline-alert">
+          <OfflineAlert text={this.state.alertText} />
+        </div>
+        <ResponsiveContainer className="scatter-chart" height={350} >
+          <ScatterChart margin={{ top: 20, right: 200, bottom: 20, left: 180 }} >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="category" dataKey="date" name="date" />
             <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#F64060" />
+            <Scatter data={this.getData()} fill="#F96969" />
           </ScatterChart>
         </ResponsiveContainer>
-        
+
         <EventList events={this.state.events} />
       </div>
     );

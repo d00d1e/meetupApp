@@ -1,14 +1,19 @@
 .App {
   margin: 0 auto;
   text-align: center;
-  padding: 2% 5%;
+  padding: 2rem 0;
 }
 
 .App * {
   box-sizing: border-box;
 }
 
+body {
+  background-color: #fafafa;
+}
+
 ul {
+  width: 100%;
   padding: 0;
   list-style: none;
 }
@@ -17,38 +22,73 @@ p {
   margin: 5px 0;
 }
 
-input[type="text"], input[type="number"] {
-  padding: 8px 6px 8px 10px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  line-height: 20px;
-  align-self: center;
+input[type="text"],
+input[type="number"] {
   height: 40px;
+  padding: 1rem;
+  outline: none;
+  font-size: 14px;
+  line-height: 5rem;
+  align-self: center;
+}
+
+.divider-container {
+  background-color: #00455d;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.divider-header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.divider-content {
+  width: 50rem;
+  height: 4rem;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.8rem;
 }
 
 .city {
-  width: 250px;
+  width: 25rem;
 }
 
 .CitySearch {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CitySearch input {
+  padding: 1rem;
 }
 
 .suggestions {
-  width: 250px;
-  align-self: center;
+  width: 25rem;
+  /* align-self: center;
   margin: 0;
-  font-size: 14px;
+  font-size: 14px; */
+  position: absolute;
 }
 
 .suggestions > li {
   text-align: left;
   padding: 8px 6px 8px 10px;
+  color: black;
   background-color: #eee;
   cursor: default;
+  position: relative;
+  transform: translateY(165%);
 }
 
 .suggestions > li:last-child {
@@ -57,10 +97,15 @@ input[type="text"], input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #BCDCDB;
+  background-color: #bcdcdb;
+}
+
+.EventList {
+  padding: 7rem;
 }
 
 .event {
+  width: 100%;
   padding: 10px 10px 20px;
   margin-bottom: 10px;
   text-align: left;
@@ -70,13 +115,17 @@ input[type="text"], input[type="number"] {
 }
 
 .details-btn {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  padding: 5px 8px;
+  color: white;
+  font-weight: bold;
+  background-color: #f96969;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  padding: 0.9rem 1rem;
   border-radius: 4px;
   outline: none;
+  border: none;
   cursor: pointer;
+  vertical-align: top;
 }
 
 .name {
@@ -89,7 +138,8 @@ input[type="text"], input[type="number"] {
   font-size: 14px;
 }
 
-.going, .visibility {
+.going,
+.visibility {
   font-style: italic;
 }
 
@@ -97,12 +147,14 @@ input[type="text"], input[type="number"] {
   overflow-x: hidden;
 }
 
-.number-of-events {
-  width: 80px;
-  margin: 20px 0 50px;
-  text-align: right;
-}
-
 .app__header img {
   height: 90px;
+}
+
+.app__header sup {
+  color: #f96969;
+}
+
+.scatter-chart {
+  padding-top: 5rem;
 }
