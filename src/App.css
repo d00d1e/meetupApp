@@ -1,11 +1,19 @@
 .App {
   margin: 0 auto;
   text-align: center;
-  padding: 2% 5%;
+  padding: 2rem 0;
 }
 
 .App * {
   box-sizing: border-box;
+}
+
+.App__header img {
+  height: 90px;
+}
+
+.App__header sup {
+  color: #f96969;
 }
 
 ul {
@@ -17,9 +25,9 @@ p {
   margin: 5px 0;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
   padding: 8px 6px 8px 10px;
-  border-radius: 4px;
   outline: none;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -27,9 +35,8 @@ input[type="text"], input[type="number"] {
   align-self: center;
   height: 40px;
 }
-
-.city {
-  width: 250px;
+input[type="text"] {
+  width: 30rem;
 }
 
 .CitySearch {
@@ -37,8 +44,12 @@ input[type="text"], input[type="number"] {
   flex-direction: column;
 }
 
+.divider {
+  width: 100%;
+}
+
 .suggestions {
-  width: 250px;
+  width: 30rem;
   align-self: center;
   margin: 0;
   font-size: 14px;
@@ -57,26 +68,54 @@ input[type="text"], input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #BCDCDB;
+  background-color: #bcdcdb;
 }
 
-.event {
+.Event {
   padding: 10px 10px 20px;
   margin-bottom: 10px;
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 4px;
-  position: relative;
 }
 
-.details-btn {
-  position: absolute;
+.EventList {
+  padding: 0 5rem;
+}
+
+.eventDateTime {
+  color: #696969;
+}
+
+.eventName {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+}
+
+/* .details-btn {
+  color: white;
+  background-color: #f96969;
   right: 5px;
   bottom: 5px;
-  padding: 5px 8px;
-  border-radius: 4px;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+} */
+
+.details-btn {
+  color: white;
+  background-color: #f96969;
+  padding: 0.7rem;
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
   outline: none;
   cursor: pointer;
+  border: none;
 }
 
 .name {
@@ -89,20 +128,11 @@ input[type="text"], input[type="number"] {
   font-size: 14px;
 }
 
-.going, .visibility {
+.going,
+.visibility {
   font-style: italic;
 }
 
 .description {
   overflow-x: hidden;
-}
-
-.number-of-events {
-  width: 80px;
-  margin: 20px 0 50px;
-  text-align: right;
-}
-
-.app__header img {
-  height: 90px;
 }

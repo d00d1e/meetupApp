@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import './App.css'; 
+import './App.css';
 
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -16,7 +16,7 @@ class App extends Component {
     getEvents().then(response => this.setState({ events: response }));
     window.addEventListener('online', this.offlineAlert());
   }
-  
+
   state = {
     events: [],
     lat: null,
@@ -30,7 +30,7 @@ class App extends Component {
       this.setState({ alertText: 'You are currently offline, please connect to internet for an updated list' });
     } else {
       this.setState({ alertText: '' });
-    } 
+    }
   }
 
   updateEvents = (lat, lon, page) => {
@@ -69,27 +69,28 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="app__header">
-          <img 
-            className="app__headerImage"
-            src="https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg" 
+        <div className="App__header">
+          <img
+            src="https://secure.meetupstatic.com/s/img/5455565085016210254/logo/svg/logo--script.svg"
             alt=""
-          /> 
+          /><sup>too</sup>
         </div>
-        <CitySearch updateEvents={this.updateEvents} />
-        <NumberOfEvents updateEvents={this.updateEvents} />
+        <div className="divider">
+          <CitySearch updateEvents={this.updateEvents} />
+          <NumberOfEvents updateEvents={this.updateEvents} />
+        </div>
         <OfflineAlert text={this.state.alertText} />
 
-        <ResponsiveContainer height={240} >
-          <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }} >
+        <ResponsiveContainer height={300} >
+          <ScatterChart margin={{ top: 30, right: 50, bottom: 30, left: 50 }} >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="category" dataKey="date" name="date" />
             <YAxis type="number" dataKey="number" name="number of events" allowDecimals={false} />
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            <Scatter data={this.getData()} fill="#F64060" />
+            <Scatter data={this.getData()} fill="#F96969" />
           </ScatterChart>
         </ResponsiveContainer>
-        
+
         <EventList events={this.state.events} />
       </div>
     );
