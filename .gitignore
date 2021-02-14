@@ -26,3 +26,5 @@ yarn-error.log*
 
 user_stories.txt
 code.txt
+
+yarn.lock

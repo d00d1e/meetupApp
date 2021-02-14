@@ -8,15 +8,15 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "atatus-spa": "^4.2.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-util-is": "^1.0.2",
     "http-server": "^0.12.3",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.2",
     "recharts": "^1.8.5",
-    "serverless": "^1.74.1",
+    "serverless": "^2.23.0",
     "websocket-extensions": "^0.1.4"
   },
   "scripts": {
